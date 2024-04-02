@@ -3,21 +3,6 @@ body {
   height: 100%;
 }
 
-h1 {
-  font-family: 'Lobster';
-  font-size: 50px;
-  color: #ffffff;
-  text-align: center;
-  flex-basis: 5 0 10%;
-}
-
-p {
-  font-family: Arial, Helvetica, sans-serif;
-  color: #ffffff;
-  text-align: center;
-  margin: 5%;
-}
-
 .container01 {
   background-color: #283e50;
   border-radius: 10px 10px 0 0;
@@ -27,10 +12,28 @@ p {
   margin-right: auto;
   margin-top: 5%;
   margin-bottom: 20%;
-  max-width: 640px;
+  max-width: 500px;
 }
 
-img {
+
+h1 {
+  font-family: 'Lobster';
+  font-size: 50px;
+  color: #ffffff;
+  text-align: center;
+  flex-basis: 5 0 10%;
+  margin-top: 1rem;
+  margin-bottom: 1px;
+}
+
+p {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #ffffff;
+  text-align: center;
+  margin: 5%;
+}
+
+.uvodniObrazek {
   border-radius: 10px 10px 0 0;
 }
 
@@ -41,6 +44,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
 }
 
 .zacni {
@@ -57,4 +61,60 @@ a {
 
 .zacni:hover {
   background-color: #0090e9;
+}
+
+/* zde začíná úkol 2*/
+/* Pardon, nestihla jsem dokončit, není to hezký výsledek */
+/* a taky pardon za moje interní poznámky, jsou na páteční skupinu */
+
+.hra {
+  /* přesně nerozumím tomu, co znamená jednotka vmin*/
+  max-width: 80vmin;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+  /*nechápu, proč musím mít margin bottom, proč mi to ve zmenšené verzi ukazuje fialový pruh? */
+  margin-bottom: 30%;
+  display: flex;
+  flex-direction: column;
+}
+
+.horniContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dolniContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/*nechápu moc, jaktože se úhledně zarovnávají po deseti když v minulém flexboxu se zarovnávali podle dostupného místa? */
+
+.pole {
+  width: 10%;
+  aspect-ratio: 1/1;
+  border: 1px solid black;
+  opacity: 0.5;
+}
+
+/*proč mi nefunguje pseudotřída?*/
+
+.pole:hover,
+.pole:focus,
+{
+opacity: 0.1;
+background-color: white;
+}
+
+.ikona,
+.kolecko {
+  max-width: 40%;
+  padding-left: 7px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-right: 7px;
+  border-radius: 3px;
 }
