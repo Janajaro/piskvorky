@@ -44,29 +44,29 @@ const selectPole = async (event) => {
       location.reload();
     }, 500);
   }
+
+  if (currentPlayer === 'cross') {
+    // spustí se pouze v případě, že je na tahu počítač
+    const response = await fetch(
+      'https://piskvorky.czechitas-podklady.cz/api/suggest-next-move',
+      {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          board: gameField,
+          player: 'x', // počítač hraje jako 'x'
+        }),
+      },
+    );
+    const data = await response.json();
+    const { x, y } = data.position;
+    const field = allButtonsSelection[x + y * 10];
+    field.click();
+  }
 };
 
 allButtonsSelection.forEach((button) => {
   button.addEventListener('click', selectPole);
 });
-
-// piskvorky 5/5
-// nefunguje mi to a nedokázala jsem přijít na to proč:/
-
-const response = await fetch(
-  'https://piskvorky.czechitas-podklady.cz/api/suggest-next-move',
-  {
-    method: 'POST',
-    headers: {
-      'Content-type': 'application/json',
-    },
-    body: JSON.stringify({
-      board: gameField,
-      player: 'x',
-    }),
-  },
-);
-const data = await response.json();
-const { x, y } = data.position;
-const field = allButtonsSelection[x + y * 10];
-field.click();
