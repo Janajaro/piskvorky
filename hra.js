@@ -1,8 +1,9 @@
 import { findWinner } from 'https://unpkg.com/piskvorky@0.1.4';
 
 let currentPlayer = 'circle';
+const allButtonsSelection = document.querySelectorAll('.pole');
 
-const selectPole = (event) => {
+const selectPole = async (event) => {
   event.target.disabled = true;
   if (currentPlayer === 'circle') {
     event.target.classList.add('board__field--circle');
@@ -31,21 +32,41 @@ const selectPole = (event) => {
     setTimeout(() => {
       alert(`Vyhrál hráč se symbolem ${winner}.`);
       location.reload();
-    }, 1000);
+    }, 500);
   } else if (winner === 'x') {
     setTimeout(() => {
       alert(`Vyhrál hráč se symbolem ${winner}.`);
       location.reload();
-    }, 1000);
+    }, 500);
   } else if (winner === 'tie') {
     setTimeout(() => {
       alert('Oba jste looseři! Zahrajte si znovu!');
       location.reload();
-    }, 1000);
+    }, 500);
   }
 };
 
-const allButtonsSelection = document.querySelectorAll('.pole');
 allButtonsSelection.forEach((button) => {
   button.addEventListener('click', selectPole);
 });
+
+// piskvorky 5/5
+// nefunguje mi to a nedokázala jsem přijít na to proč:/
+
+const response = await fetch(
+  'https://piskvorky.czechitas-podklady.cz/api/suggest-next-move',
+  {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      board: gameField,
+      player: 'x',
+    }),
+  },
+);
+const data = await response.json();
+const { x, y } = data.position;
+const field = allButtonsSelection[x + y * 10];
+field.click();
